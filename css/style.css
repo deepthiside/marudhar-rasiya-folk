@@ -53,6 +53,12 @@ h1, h2, h3, h4 {
     z-index: 1000;
     border-bottom: 3px solid var(--gold);
     box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+    transition: top 0.4s ease-in-out; /* Crucial for the smart scroll effect */
+}
+
+/* This class will be added by JS to hide the navbar */
+.navbar-hidden {
+    top: -100px; 
 }
 
 .navbar .logo h2 {
@@ -79,6 +85,70 @@ h1, h2, h3, h4 {
 
 .nav-links a:hover {
     color: var(--gold);
+}
+
+/* Hamburger Menu (Hidden by default on Desktop) */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+    z-index: 1001;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--gold);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+/* ==========================================================
+   MOBILE RESPONSIVENESS (Update your existing media queries)
+   ========================================================== */
+@media (max-width: 992px) {
+    /* Show Hamburger on tablets and phones */
+    .hamburger {
+        display: flex;
+    }
+
+    /* Hide links off-screen initially */
+    .nav-links {
+        position: absolute;
+        top: 100%; /* Drops right below the navbar */
+        left: -100%; /* Hides it to the left */
+        flex-direction: column;
+        background-color: var(--maroon);
+        width: 100%;
+        text-align: center;
+        transition: 0.4s ease-in-out;
+        padding: 20px 0;
+        gap: 20px;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.5);
+        border-bottom: 3px solid var(--gold);
+    }
+
+    /* Class added by JS to slide the menu in */
+    .nav-links.active {
+        left: 0;
+    }
+
+    .nav-links a {
+        font-size: 1.1rem; /* Slightly larger for easier tapping */
+        display: block;
+    }
+
+    /* Hamburger Animation to 'X' */
+    .hamburger.active span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
 }
 
 /* --- HERO SECTION --- */
