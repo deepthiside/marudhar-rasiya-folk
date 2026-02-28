@@ -123,12 +123,12 @@ h1, h2, h3, h4 {
     100% { opacity: 1; } 
 }
 
-/* --- UPDATED OVERLAY --- */
+/* --- FESTIVAL VIBE OVERLAY --- */
 .slider-overlay {
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
-    /* Changed from the heavy maroon to a very light, neutral 20% shadow */
-    background: rgba(0, 0, 0, 0.2); 
+    /* Darker at the edges, slightly transparent in the center so the glowing text pops */
+    background: radial-gradient(circle, rgba(10, 2, 5, 0.4) 0%, rgba(10, 2, 5, 0.9) 100%);
     z-index: 1;
 }
 
@@ -138,25 +138,69 @@ h1, h2, h3, h4 {
     padding-top: 60px;
     max-width: 900px;
     width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.hero-title {
-    font-size: clamp(3rem, 5vw, 5rem); /* Responsive typography */
+/* --- FESTIVAL TYPOGRAPHY --- */
+/* 1. The tilted accent text */
+.hero-pre-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
     color: var(--gold);
-    margin-bottom: 15px;
-    text-shadow: 4px 4px 8px rgba(0,0,0,0.8);
-    letter-spacing: 2px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin-bottom: -15px;
+    transform: rotate(-5deg); /* The tilted "WE CAN" vibe */
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+    z-index: 3;
+}
+
+/* 2. The massive glowing gradient text */
+.hero-title-massive {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 900;
+    line-height: 1.1;
+    margin: 0;
+    text-transform: uppercase;
+    /* Vibrant Sunset Gradient Fill */
+    background: linear-gradient(45deg, var(--gold) 20%, var(--saffron) 50%, #FF5722 80%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0px 10px 15px rgba(0,0,0,0.6));
+    z-index: 2;
+}
+
+/* 3. The hollow glowing outline text */
+.hero-title-outline {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(4.5rem, 11vw, 9.5rem);
+    font-weight: 900;
+    line-height: 0.9;
+    margin: 0;
+    margin-top: -10px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    /* Transparent center with glowing gold border */
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke: 2px var(--gold);
+    filter: drop-shadow(0px 0px 20px rgba(220, 47, 2, 0.4));
 }
 
 .hero-subtitle {
-    font-size: clamp(1.2rem, 2vw, 1.6rem);
-    color: var(--sand);
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    color: #E0E0E0;
+    margin-top: 30px;
     margin-bottom: 40px;
     font-weight: 300;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
 }
 
-/* --- BUTTONS --- */
+/* --- BUTTONS (Sleek Pill Shape) --- */
 .hero-buttons {
     display: flex;
     gap: 20px;
@@ -164,46 +208,42 @@ h1, h2, h3, h4 {
     flex-wrap: wrap;
 }
 
-.btn-primary {
-    background-color: var(--saffron);
-    color: white;
-    padding: 14px 35px;
+.btn-primary, .btn-secondary {
+    padding: 12px 35px;
     text-decoration: none;
-    font-weight: bold;
-    font-size: 1.1rem;
-    border-radius: 4px;
-    border: 2px solid var(--saffron);
+    font-weight: 600;
+    font-size: 0.9rem;
+    border-radius: 30px; /* Pill shape */
     transition: all 0.4s ease;
     text-transform: uppercase;
-    box-shadow: 0 4px 15px rgba(220, 47, 2, 0.4);
+    letter-spacing: 2px;
     display: inline-block;
 }
 
-.btn-primary:hover {
+.btn-primary {
     background-color: transparent;
-    border-color: var(--gold);
-    color: var(--gold);
-    box-shadow: 0 4px 15px rgba(255, 186, 8, 0.4);
+    color: white;
+    border: 2px solid var(--saffron);
+    box-shadow: 0 4px 15px rgba(220, 47, 2, 0.2);
+}
+
+.btn-primary:hover {
+    background-color: var(--saffron);
+    box-shadow: 0 0 20px rgba(220, 47, 2, 0.6);
     transform: translateY(-3px);
 }
 
 .btn-secondary {
     background-color: transparent;
     color: var(--gold);
-    padding: 14px 30px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1rem;
-    border-radius: 4px;
     border: 2px solid var(--gold);
-    transition: all 0.4s ease;
-    text-transform: uppercase;
     backdrop-filter: blur(5px);
 }
 
 .btn-secondary:hover {
     background-color: var(--gold);
     color: var(--maroon);
+    box-shadow: 0 0 20px rgba(255, 186, 8, 0.6);
     transform: translateY(-3px);
 }
 
@@ -518,10 +558,96 @@ h1, h2, h3, h4 {
 .media-card:hover img { transform: scale(1.1); }
 .media-card-content { padding: 30px; }
 
-/* --- ENHANCED TESTIMONIALS --- */
-.testimonial-card { position: relative; }
-.quote-icon { font-size: 3rem; color: var(--gold); opacity: 0.3; position: absolute; top: 10px; right: 20px; }
-.stars { color: var(--gold); font-size: 1.2rem; margin-bottom: 15px; }
+/* --- MASONRY TESTIMONIALS SECTION --- */
+/* Matches the screenshot's gradient vibe but uses our Theme Colors */
+/* --- MASONRY TESTIMONIALS SECTION --- */
+.testimonial-section {
+    /* Uses a Rajasthani Fort image with a royal maroon/orange overlay so the white text stays readable */
+    background: url('https://www.wowclub.com/blog/content/images/size/w1520/2020/05/562059.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Creates a smooth parallax scrolling effect */
+    border-top: 5px solid var(--gold);
+    border-bottom: 5px solid var(--gold);
+}
+
+.testimonial-header .text-white {
+    color: rgb(0, 0, 0) !important;
+    text-align: left;
+}
+
+.testimonial-header .section-title::after {
+    margin-left: 0; /* Aligns the motif to the left */
+    color: white;
+}
+
+.testimonial-header .section-desc {
+    margin-left: 0;
+    font-size: 1.3rem;
+    font-weight: 400;
+}
+
+/* 2-Column Interlocking Layout */
+.testimonial-masonry {
+    column-count: 2;
+    column-gap: 30px;
+    margin-top: 40px;
+}
+
+.masonry-card {
+    break-inside: avoid; /* Prevents a card from splitting across columns */
+    margin-bottom: 30px;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 5px 10px 20px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.6); /* Adds the subtle border from the screenshot */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.masonry-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 5px 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Card Background Variations based on theme */
+.card-sand { background-color: var(--sand); }
+.card-light { background-color: var(--light-sand); }
+.card-white { background-color: #FFFFFF; }
+
+.masonry-card .stars {
+    color: var(--saffron);
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+
+.masonry-card p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 25px;
+}
+
+/* Large faded names like the screenshot */
+.client-name {
+    font-size: 2rem;
+    color: var(--maroon);
+    font-weight: 700;
+    opacity: 0.9;
+}
+
+/* Mobile Responsiveness for Testimonials */
+@media (max-width: 768px) {
+    .testimonial-masonry {
+        column-count: 1; /* Stacks into a single column on phones */
+    }
+    .testimonial-header .text-white {
+        text-align: center;
+    }
+    .testimonial-header .section-title::after {
+        margin: 5px auto 0 auto; /* Centers the motif on mobile */
+    }
+}
 
 /* --- ENHANCED CONTACT SECTION --- */
 .contact-wrapper { display: flex; gap: 40px; flex-wrap: wrap; margin-top: 40px; }
@@ -538,3 +664,29 @@ h1, h2, h3, h4 {
 .footer-col ul a { color: #d3d3d3; text-decoration: none; transition: color 0.3s; }
 .footer-col ul a:hover { color: var(--gold); }
 .footer-col p { line-height: 1.8; }
+
+/* --- CERTIFICATE & AWARD FRAMES --- */
+.certificate-box {
+    background-color: white;
+    padding: 15px; /* Creates a white matte border around the image */
+    border: 4px solid var(--gold);
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.certificate-box img {
+    width: 100%;
+    height: auto; /* Keeps the natural shape of the certificate */
+    object-fit: contain;
+    border: 1px solid #eee; /* Subtle inner line */
+}
+
+.certificate-box:hover {
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 15px 35px rgba(106, 4, 15, 0.2);
+    border-color: var(--maroon);
+}
