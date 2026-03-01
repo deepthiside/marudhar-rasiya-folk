@@ -589,18 +589,63 @@ h1, h2, h3, h4 {
     border-color: var(--maroon);
 }
 
-/* --- FOOTER --- */
+/* --- COMPACT FOOTER --- */
 .footer {
-    background-color: var(--dark-maroon);
+    background-color: var(--maroon);
     color: white;
-    text-align: center;
-    padding: 50px 0;
+    padding: 40px 0 0 0; /* Reduced top padding */
     border-top: 4px solid var(--gold);
 }
 
-.footer h2 { color: var(--gold); margin-bottom: 15px; }
-.footer p { color: #d3d3d3; margin-bottom: 5px; }
+.footer-grid {
+    display: grid;
+    /* Force 4 columns on desktop to keep height low */
+    grid-template-columns: 1.5fr 1fr 1.2fr 1fr; 
+    gap: 30px;
+    margin-bottom: 30px;
+    align-items: start;
+}
 
+.footer-logo {
+    width: 160px; /* Slightly adjusted for the 1-row layout */
+    height: auto;
+    border-radius: 8px;
+    border: 2px solid var(--gold);
+    margin-bottom: 15px;
+}
+
+.footer-col h3 {
+    font-size: 1.2rem; /* Slightly smaller headers to save space */
+    margin-bottom: 15px;
+}
+
+.footer-col p, .footer-col ul li {
+    font-size: 0.85rem; /* Compact text size */
+    margin-bottom: 8px;
+}
+
+.social-links li a i {
+    width: 18px;
+    color: var(--gold);
+}
+
+.footer-bottom {
+    padding: 15px; /* Compact bottom bar */
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Ensure it stays readable on tablets/mobile */
+@media (max-width: 992px) {
+    .footer-grid {
+        grid-template-columns: 1fr 1fr; /* 2x2 grid on tablets */
+    }
+}
+
+@media (max-width: 600px) {
+    .footer-grid {
+        grid-template-columns: 1fr; /* Stacked on mobile */
+    }
+}
 /* ==========================================================
    MOBILE RESPONSIVENESS (Media Queries)
    ========================================================== */
