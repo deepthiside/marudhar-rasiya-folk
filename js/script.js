@@ -7,26 +7,24 @@ function loadComponent(id, file, callback) {
         })
         .then(data => {
             document.getElementById(id).innerHTML = data;
-            if (callback) callback(); // Run specific code after component loads
+            if (callback) callback(); 
         })
         .catch(error => console.error('Error loading component:', error));
 }
 
-// Logic for Navbar functionality (Hamburger & Smart Scroll)
+// Logic for Navbar functionality
 function initializeNavbar() {
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('nav-links');
     const navItems = document.querySelectorAll('.nav-item');
     const navbar = document.getElementById('main-navbar');
     
-    // 1. Hamburger Menu Toggle
     if(hamburger) {
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             navLinks.classList.toggle('active');
         });
 
-        // Close menu when a link is clicked
         navItems.forEach(item => {
             item.addEventListener('click', () => {
                 hamburger.classList.remove('active');
@@ -35,34 +33,51 @@ function initializeNavbar() {
         });
     }
 
-    // 2. Smart Scroll (Hide on scroll down, show on scroll up)
     let lastScrollTop = 0;
-
     window.addEventListener('scroll', () => {
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        // If the mobile menu is open, don't hide the navbar
-        if (navLinks && navLinks.classList.contains('active')) {
-            return; 
-        }
+        if (navLinks && navLinks.classList.contains('active')) return; 
 
         if (scrollTop > lastScrollTop && scrollTop > 100) {
-            // Scrolling down & past the hero top: Hide Navbar
             navbar.classList.add('navbar-hidden');
         } else {
-            // Scrolling up: Show Navbar
             navbar.classList.remove('navbar-hidden');
         }
         lastScrollTop = scrollTop;
     });
 }
 
+// Logic for EmailJS Form Submission
+function initializeContactForm() {
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            const btn = document.getElementById('submit-btn');
+            btn.innerText = 'Sending...';
+
+            // Replace with your Service ID and Template ID
+            emailjs.sendForm('service_6zsblsu', 'template_ia9a6d4', this)
+                .then(() => {
+                    btn.innerText = 'Send Inquiry';
+                    alert('Inquiry Sent Successfully! We will contact you soon.');
+                    contactForm.reset();
+                }, (error) => {
+                    btn.innerText = 'Send Inquiry';
+                    alert('Failed to send inquiry. Please try again later.');
+                    console.error('EmailJS Error:', error);
+                });
+        });
+    }
+}
+
 // Load all components on DOM Ready
 document.addEventListener("DOMContentLoaded", () => {
-    // Load navbar first, and trigger initializeNavbar when it's done
     loadComponent("navbar-placeholder", "components/navbar.html", initializeNavbar);
+    loadComponent("contact-placeholder", "components/contact.html", initializeContactForm);
     
-    // Load everything else
+    // Load static components
     loadComponent("hero-placeholder", "components/hero.html");
     loadComponent("about-placeholder", "components/about.html");
     loadComponent("services-placeholder", "components/services.html");
@@ -71,6 +86,5 @@ document.addEventListener("DOMContentLoaded", () => {
     loadComponent("blogs-placeholder", "components/blogs.html");
     loadComponent("events-placeholder", "components/events.html");
     loadComponent("customers-placeholder", "components/customers.html");
-    loadComponent("contact-placeholder", "components/contact.html");
     loadComponent("footer-placeholder", "components/footer.html");
 });
