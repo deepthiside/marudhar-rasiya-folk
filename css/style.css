@@ -309,17 +309,31 @@ h1, h2, h3, h4 {
     display: inline-block;
 }
 
+/* --- GLOBAL PRIMARY BUTTON --- */
 .btn-primary {
-    background-color: transparent;
-    color: white;
-    border: 2px solid var(--saffron);
-    box-shadow: 0 4px 15px rgba(220, 47, 2, 0.2);
+    background-color: var(--maroon); /* Solid royal background */
+    color: var(--gold);              /* Bright gold text */
+    padding: 12px 30px;
+    border: 2px solid var(--maroon);
+    border-radius: 30px;
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
+/* Hover effect */
 .btn-primary:hover {
-    background-color: var(--saffron);
-    box-shadow: 0 0 20px rgba(220, 47, 2, 0.6);
+    background-color: transparent;
+    color: var(--maroon);
+    border: 2px solid var(--maroon);
     transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(128, 0, 0, 0.2);
 }
 
 .btn-secondary {
