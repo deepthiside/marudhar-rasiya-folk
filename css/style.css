@@ -577,16 +577,39 @@ h1, h2, h3, h4 {
 .contact-form input, .contact-form textarea {
     padding: 15px;
     margin-bottom: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid #ddd;
     font-family: 'Poppins', sans-serif;
     background-color: var(--sand);
     border-radius: 4px;
     outline: none;
-    transition: border 0.3s;
+    transition: all 0.3s ease;
 }
 
 .contact-form input:focus, .contact-form textarea:focus {
     border-color: var(--maroon);
+    box-shadow: 0 0 5px rgba(128, 0, 0, 0.2);
+}
+
+/* THE FIX: Added button styling so it's always visible */
+.contact-form .btn-primary {
+    background-color: var(--maroon); /* Solid maroon background */
+    color: var(--gold);              /* Gold text color */
+    padding: 15px;
+    border: 2px solid var(--gold);    /* Gold border for royal look */
+    border-radius: 4px;
+    font-family: 'Cinzel', serif;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+}
+
+.contact-form .btn-primary:hover {
+    background-color: var(--gold);
+    color: var(--maroon);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 /* --- COMPACT FOOTER --- */
